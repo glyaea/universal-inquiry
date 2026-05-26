@@ -1,0 +1,29 @@
+\LoadClass[12pt]{book}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{centernot}
+\usepackage{geometry}
+\usepackage{parskip}
+\usepackage{physics}
+
+\geometry{
+	a4paper,
+	margin=1in
+}
+\theoremstyle{definition}
+\newtheorem{notation}{Notation}
+\counterwithin{notation}{chapter}
+\newtheorem{axiom}{Axiom}
+\counterwithin{axiom}{chapter}
+\newtheorem{definition}{Definition}
+\counterwithin{definition}{chapter}
+\newtheorem{theorem}{Theorem}
+\counterwithin{theorem}{chapter}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\counterwithin{remark}{chapter}
+\newtheorem{example}{Example}
+\counterwithin{example}{chapter}

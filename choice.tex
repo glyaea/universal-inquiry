@@ -1,0 +1,81 @@
+\begin{axiom}
+$$
+	\forall X\left[
+		\left(
+			\varnothing\notin X
+			\land
+			\forall a,b\in X\,
+			(a\neq b\Rightarrow a\cap b=\varnothing)
+		\right)
+		\Rightarrow
+		\exists C\,\forall a\in X\,\exists!u\in a\,(u\in C)
+	\right]
+$$
+\end{axiom}
+
+\begin{axiom}
+$$
+	\forall X(
+		\varnothing\notin X
+		\land
+		\forall a,b\in X(
+			a\cap b
+			\neq
+			\varnothing
+			\Rightarrow
+			a=b
+		)
+		\Rightarrow
+		\exists C,
+		\forall a\in X,
+		\exists!u\in a\cap C
+	)
+$$
+\end{axiom}
+
+\begin{axiom}
+$$
+	\forall X\,(
+		\forall a,b\in X\,(
+			a\cap b=\varnothing
+			\Leftrightarrow
+			a\neq b
+		)
+		\Rightarrow
+		\exists C,
+		\forall a\in X,
+		\exists!u\in a\cap C
+	)
+$$
+\end{axiom}
+
+\begin{axiom}
+$$
+	\forall X\,(
+		\forall a,b\in X\,(
+			a\cap b\neq\varnothing
+			\Leftrightarrow
+			a=b
+		)
+		\Rightarrow
+		\exists C,
+		\forall a\in X,
+		\exists!u\in a\cap C
+	)
+$$
+\end{axiom}
+
+\begin{axiom}
+$$
+	\forall X\,\exists C\,(
+		\forall a,b\in X\,(
+			a\cap b=\varnothing
+			\oplus
+			a=b
+		)
+		\Rightarrow
+		\forall a\in X\,
+		\exists!u\in a\cap C
+	)
+$$
+\end{axiom}

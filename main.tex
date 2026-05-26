@@ -1,0 +1,277 @@
+\documentclass{main}
+
+\title{Universal Inquiry}
+\author{Gregory Lim}
+\date{v1}
+
+\begin{document}
+
+\maketitle
+
+\chapter{Logic}
+
+A variable is an object.
+If $a,b$ are variables, then $a\in b$ is a formula.
+It is true if $a$ is in $b$, and false otherwise.
+If $p$ is a formula, then $\neg p$ is a formula.
+It is true if $p$ is false, and false otherwise.
+If $p,q$ are formulas, then $p\land q$ is a formula.
+It is true if $p,q$ are true, and false otherwise.
+If $x$ is a variable, and $p$ is a formula, then $\exists x\,(p)$ is a formula.
+It is true if there exists $x$ such that $p$ is true, and false otherwise.
+
+\begin{notation}
+$$
+	p\lor q
+	\equiv
+	\neg(\neg p\land\neg q)
+$$
+\end{notation}
+
+\begin{remark}
+This says ``it is not the case that both $p$ and $q$ fail''.
+\end{remark}
+
+\begin{notation}
+$$
+	p\Rightarrow q
+	\equiv
+	\neg(p\land\neg q)
+$$
+\end{notation}
+
+\begin{remark}
+This says ``it is not the case that $p$ works but $q$ fails''.
+\end{remark}
+
+\begin{notation}
+$$
+	p\Leftrightarrow q
+	\equiv
+	(p\Rightarrow q)
+	\land
+	(q\Rightarrow p)
+$$
+\end{notation}
+
+\begin{notation}
+$$
+	p\oplus q
+	\equiv
+	\neg(p\Leftrightarrow q)
+$$
+\end{notation}
+
+\begin{remark}
+This says ``it is not the case that $p$ and $q$ work the same''.
+\end{remark}
+
+\begin{notation}
+$$
+	\forall x\,(p)
+	\equiv
+	\neg\exists x\,(\neg p)
+$$
+\end{notation}
+
+\begin{remark}
+This says ``no counterexample exists''.
+\end{remark}
+
+\begin{notation}
+$$
+	X=Y
+	\Leftrightarrow
+	\forall a\,(
+		a\in X
+		\Leftrightarrow
+		a\in Y
+	)
+	\land
+	\forall B\,(
+		X\in B
+		\Leftrightarrow
+		Y\in B
+	)
+$$
+\end{notation}
+
+\begin{remark}
+This says ``$X$ and $Y$ look the same from the inside and outside''.
+\end{remark}
+
+\newpage
+
+\begin{axiom}
+$$
+	\forall A,B\,(
+		\forall x\,(
+			x\in A
+			\Leftrightarrow
+			x\in B
+		)
+		\Rightarrow
+		A=B
+	)
+$$
+\end{axiom}
+
+\begin{axiom}
+$$
+	\forall B,\exists U,\forall c\,(
+		c\in U
+		\Leftrightarrow
+		\exists P\in B\,(
+			c\in P
+		)
+	)
+$$
+\end{axiom}
+
+\begin{definition}
+$$
+	U=\bigcup B
+	\Leftrightarrow
+	\forall c\,(
+		c\in U
+		\Leftrightarrow
+		\exists P\in B\,(
+			c\in P
+		)
+	)
+$$
+\end{definition}
+
+\begin{definition}
+$$
+	A\cup B=\bigcup\{A,B\}
+$$
+\end{definition}
+
+\begin{definition}
+$$
+	I=\bigcap B
+	\Leftrightarrow
+	\forall c\,(
+		c\in I
+		\Leftrightarrow
+		\forall P\in B\,(
+			c\in P
+		)
+	)
+$$
+\end{definition}
+
+\begin{definition}
+$$
+	A\cap B=\bigcap\{A,B\}
+$$
+\end{definition}
+
+\begin{axiom}
+$$
+	\forall X,
+	\exists P,
+	\forall S\,(
+		S\in P
+		\Leftrightarrow
+		\forall s\in S\,(
+			s\in X
+		)
+	)
+$$
+\end{axiom}
+
+\begin{axiom}
+$$
+	\exists I\,(
+		\varnothing\in I
+		\land
+		\forall i\in I\,(
+			i\cup\{i\}\in I
+		)
+	)
+$$
+\end{axiom}
+
+\begin{axiom}
+$$
+	\forall X\neq\varnothing,
+	\exists x\in X\,(
+		x\cap X
+		=
+		\varnothing
+	)
+$$
+\end{axiom}
+
+\begin{notation}
+\begin{align*}
+	\operatorname{free}(a\in b)
+	&=
+	\{a,b\}
+	\\
+	\operatorname{free}(\neg p)
+	&=
+	\operatorname{free}(p)
+	\\
+	\operatorname{free}(p\land q)
+	&=
+	\operatorname{free}(p)\cup\operatorname{free}(q)
+	\\
+	\operatorname{free}(\exists x\,(p))
+	&=
+	\operatorname{free}(p)\setminus\{x\}
+\end{align*}
+\end{notation}
+
+\begin{axiom}
+Let $B\not\in\operatorname{free}(p)$.
+$$
+\forall A\,(
+	\forall x\in A,
+	\exists!y\,(
+		p
+	)
+	\Rightarrow
+	\exists B, \forall y\,(
+		y\in B
+		\Leftrightarrow
+		\exists x\in A\,(
+			p
+		)
+	)
+)
+$$
+\end{axiom}
+
+\begin{definition}
+$$
+	A\times B
+	=
+	\{
+		(a,b)
+		\mid
+		a\in A
+		\land
+		b\in B
+	\}
+$$
+\end{definition}
+
+\begin{definition}
+$$
+	Y^{X}
+	=
+	\{
+		f\subseteq X\times Y
+		\mid
+		\forall x\in X,
+		\exists!y\in Y\,(
+			(x,y)\in f
+		)
+	\}
+$$
+\end{definition}
+
+\end{document}
