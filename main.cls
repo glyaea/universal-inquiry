@@ -1,29 +1,31 @@
-\LoadClass[12pt]{book}
+\LoadClass[12pt]{article}
 
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{centernot}
+\usepackage{fontspec}
 \usepackage{geometry}
+\usepackage{mleftright}
 \usepackage{parskip}
 \usepackage{physics}
+\usepackage{sidenotes}
 
 \geometry{
 	a4paper,
-	margin=1in
+	margin=1.5in
 }
+\let\footnote\sidenote
+\setmainfont{TeX Gyre Pagella}
 \theoremstyle{definition}
-\newtheorem{notation}{Notation}
-\counterwithin{notation}{chapter}
 \newtheorem{axiom}{Axiom}
-\counterwithin{axiom}{chapter}
 \newtheorem{definition}{Definition}
-\counterwithin{definition}{chapter}
+\newtheorem{metadefinition}{Metadefinition}
+\newtheorem{notation}{Notation}
 \newtheorem{theorem}{Theorem}
-\counterwithin{theorem}{chapter}
 \theoremstyle{remark}
 \newtheorem{remark}{Remark}
-\counterwithin{remark}{chapter}
 \newtheorem{example}{Example}
-\counterwithin{example}{chapter}
+
+\newcommand{\N}{\mathbb{N}}

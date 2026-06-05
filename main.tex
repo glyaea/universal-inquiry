@@ -2,25 +2,35 @@
 
 \title{Universal Inquiry}
 \author{Gregory Lim}
-\date{v1}
+\date{}
 
 \begin{document}
 
 \maketitle
 
-\chapter{Logic}
+% Let us define standard mathematics from scratch.
+% All shall derive from membership $\in$ and object $\varnothing$.
+% "Notation" tells you how you should re-write a thing in your mind when you squint your eyes.
 
-A variable is an object.
-If $a,b$ are variables, then $a\in b$ is a formula.
-It is true if $a$ is in $b$, and false otherwise.
-If $p$ is a formula, then $\neg p$ is a formula.
-It is true if $p$ is false, and false otherwise.
-If $p,q$ are formulas, then $p\land q$ is a formula.
-It is true if $p,q$ are true, and false otherwise.
-If $x$ is a variable, and $p$ is a formula, then $\exists x\,(p)$ is a formula.
-It is true if there exists $x$ such that $p$ is true, and false otherwise.
+\begin{metadefinition}[Formula]
+	If $a,b$ are variables,
+	then $a\in b$ is a formula.
+	If $p$ is a formula,
+	then $\neg p$ is a formula.
+	If $p,q$ are formulas,
+	then $p\land q$ is a formula.
+	If $x$ is a variable,
+	and $p$ is a formula,
+	then $\exists x\,(p)$ is a formula.
+\end{metadefinition}
 
-\begin{notation}
+\begin{metadefinition}
+	If $p(x)$ is a formula,
+	and $y$ is a variable,
+	then $p(y)$ is $p(x)$ with each occurrence of $x$ replaced with $y$.
+\end{metadefinition}
+
+\begin{notation}[Disjunction]
 $$
 	p\lor q
 	\equiv
@@ -28,11 +38,7 @@ $$
 $$
 \end{notation}
 
-\begin{remark}
-This says ``it is not the case that both $p$ and $q$ fail''.
-\end{remark}
-
-\begin{notation}
+\begin{notation}[Implication]
 $$
 	p\Rightarrow q
 	\equiv
@@ -40,11 +46,7 @@ $$
 $$
 \end{notation}
 
-\begin{remark}
-This says ``it is not the case that $p$ works but $q$ fails''.
-\end{remark}
-
-\begin{notation}
+\begin{notation}[Equivalence]
 $$
 	p\Leftrightarrow q
 	\equiv
@@ -54,7 +56,7 @@ $$
 $$
 \end{notation}
 
-\begin{notation}
+\begin{notation}[Exclusive Disjunction]
 $$
 	p\oplus q
 	\equiv
@@ -62,11 +64,23 @@ $$
 $$
 \end{notation}
 
-\begin{remark}
-This says ``it is not the case that $p$ and $q$ work the same''.
-\end{remark}
+\begin{notation}[Bounded Existential Quantification]
+$$
+	\exists x\in A\,(p)
+	\equiv
+	\exists x\,(x\in A\land p)
+$$
+\end{notation}
 
-\begin{notation}
+\begin{notation}[Typed Existential Quantification]
+$$
+	\exists_{p}x\,(q)
+	\equiv
+	\exists x\,(p(x)\land q)
+$$
+\end{notation}
+
+\begin{notation}[Universal Quantification]
 $$
 	\forall x\,(p)
 	\equiv
@@ -74,14 +88,26 @@ $$
 $$
 \end{notation}
 
-\begin{remark}
-This says ``no counterexample exists''.
-\end{remark}
+\begin{notation}[Bounded Universal Quantification]
+$$
+	\forall x\in A\,(p)
+	\equiv
+	\forall x\,(x\in A\Rightarrow p)
+$$
+\end{notation}
 
-\begin{notation}
+\begin{notation}[Typed Universal Quantification]
+$$
+	\forall_{p}x\,(q)
+	\equiv
+	\forall x\,(p(x)\Rightarrow q)
+$$
+\end{notation}
+
+\begin{notation}[Equality]
 $$
 	X=Y
-	\Leftrightarrow
+	\equiv
 	\forall a\,(
 		a\in X
 		\Leftrightarrow
@@ -96,15 +122,42 @@ $$
 $$
 \end{notation}
 
-\begin{remark}
-This says ``$X$ and $Y$ look the same from the inside and outside''.
-\end{remark}
-
-\newpage
-
-\begin{axiom}
+\begin{notation}[Unique Quantification]
 $$
-	\forall A,B\,(
+	\exists!x\,(p(x))
+	\equiv
+	\exists x\,(
+		p(x)
+		\land
+		\forall y\,(
+			p(y)
+			\Rightarrow
+			y=x
+		)
+	)
+$$
+\end{notation}
+
+\begin{axiom}[Empty Set]
+$$
+	\exists n\,(
+		\nexists x\,(x\in n)
+	)
+$$
+\end{axiom}
+
+\begin{definition}[Empty Set]
+$$
+	n=\varnothing
+	\Leftrightarrow
+	\nexists x\,(x\in n)
+$$
+\end{definition}
+
+\begin{axiom}[Extensionality]
+$$
+	\forall A,\,
+	\forall B\,(
 		\forall x\,(
 			x\in A
 			\Leftrightarrow
@@ -116,9 +169,52 @@ $$
 $$
 \end{axiom}
 
-\begin{axiom}
+\begin{axiom}[Pairing]
 $$
-	\forall B,\exists U,\forall c\,(
+	\forall a,\,
+	\forall b,\,
+	\exists C,\,
+	\forall c\,(
+		c\in C
+		\Leftrightarrow
+		(
+			c=a
+			\lor
+			c=b
+		)
+	)
+$$
+\end{axiom}
+
+\begin{definition}[Couple]
+$$
+	C=\{a,b\}
+	\Leftrightarrow
+	\forall c\,(
+		c\in C
+		\Leftrightarrow
+		(
+			c=a
+			\lor
+			c=b
+		)
+	)
+$$
+\end{definition}
+
+\begin{notation}[Singleton]
+$$
+	\{a\}
+	=
+	\{a,a\}
+$$
+\end{notation}
+
+\begin{axiom}[Union]
+$$
+	\forall B,\,
+	\exists U,\,
+	\forall c\,(
 		c\in U
 		\Leftrightarrow
 		\exists P\in B\,(
@@ -128,7 +224,7 @@ $$
 $$
 \end{axiom}
 
-\begin{definition}
+\begin{definition}[Union]
 $$
 	U=\bigcup B
 	\Leftrightarrow
@@ -142,16 +238,20 @@ $$
 $$
 \end{definition}
 
-\begin{definition}
+\begin{definition}[Binary Union]
 $$
-	A\cup B=\bigcup\{A,B\}
+	A\cup B
+	=
+	\bigcup\{A,B\}
 $$
 \end{definition}
 
-\begin{definition}
+\begin{definition}[Intersection]
 $$
 	I=\bigcap B
 	\Leftrightarrow
+	B\neq\varnothing
+	\land
 	\forall c\,(
 		c\in I
 		\Leftrightarrow
@@ -162,16 +262,18 @@ $$
 $$
 \end{definition}
 
-\begin{definition}
+\begin{definition}[Binary Intersection]
 $$
-	A\cap B=\bigcap\{A,B\}
+	A\cap B
+	=
+	\bigcap\{A,B\}
 $$
 \end{definition}
 
-\begin{axiom}
+\begin{axiom}[Power Set]
 $$
-	\forall X,
-	\exists P,
+	\forall X,\,
+	\exists P,\,
 	\forall S\,(
 		S\in P
 		\Leftrightarrow
@@ -182,21 +284,98 @@ $$
 $$
 \end{axiom}
 
-\begin{axiom}
+\begin{definition}[Power Set]
+$$
+	P=\mathcal P(X)
+	\Leftrightarrow
+	\forall S\,(
+		S\in P
+		\Leftrightarrow
+		\forall s\in S\,(s\in X)
+	)
+$$
+\end{definition}
+
+\begin{definition}[Subset]
+$$
+	S\subseteq X
+	\Leftrightarrow
+	S\in\mathcal{P}(X)
+$$
+\end{definition}
+
+\begin{definition}[Successor]
+$$
+	\operatorname{succ}(x)
+	=
+	x\cup\{x\}
+$$
+\end{definition}
+
+\begin{definition}[Inductive Set]
+$$
+	\operatorname{Ind}(I)
+	\Leftrightarrow
+	\varnothing\in I
+	\land
+	\forall i\in I\,(
+		\operatorname{succ}(i)\in I
+	)
+$$
+\end{definition}
+
+\begin{axiom}[Infinity]
 $$
 	\exists I\,(
-		\varnothing\in I
-		\land
-		\forall i\in I\,(
-			i\cup\{i\}\in I
-		)
+		\operatorname{Ind}(I)
 	)
 $$
 \end{axiom}
 
-\begin{axiom}
+% \begin{definition}[Set of Natural Numbers]
+% $$
+% 	N=\N
+% 	\Leftrightarrow
+% 	\exists I\,\mleft(
+% 		\operatorname{Ind}(I)
+% 		\land
+% 		N
+% 		=
+% 		\bigcap
+% 		\{
+% 			X\subseteq I
+% 			\mid
+% 			\operatorname{Ind}(X)
+% 		\}
+% 	\mright)
+% $$
+% \end{definition}
+
+\begin{definition}[Set of Natural Numbers]
 $$
-	\forall X\neq\varnothing,
+	N=\N
+	\Leftrightarrow
+	\forall n\,(
+		n\in N
+		\Leftrightarrow
+		\forall_{\operatorname{Ind}}I\,(
+			n\in I
+		)
+	)
+$$
+\end{definition}
+
+\begin{definition}[Pair]
+$$
+	(a,b)
+	=
+	\{\{a\},\{a,b\}\}
+$$
+\end{definition}
+
+\begin{axiom}[Foundation]
+$$
+	\forall X\neq\varnothing,\,
 	\exists x\in X\,(
 		x\cap X
 		=
@@ -205,7 +384,7 @@ $$
 $$
 \end{axiom}
 
-\begin{notation}
+\begin{definition}[Set of Free Variables]
 \begin{align*}
 	\operatorname{free}(a\in b)
 	&=
@@ -217,35 +396,53 @@ $$
 	\\
 	\operatorname{free}(p\land q)
 	&=
-	\operatorname{free}(p)\cup\operatorname{free}(q)
+	\operatorname{free}(p)
+	\cup
+	\operatorname{free}(q)
 	\\
 	\operatorname{free}(\exists x\,(p))
 	&=
-	\operatorname{free}(p)\setminus\{x\}
+	\operatorname{free}(p)
+	\setminus
+	\{x\}
 \end{align*}
-\end{notation}
+\end{definition}
 
-\begin{axiom}
-Let $B\not\in\operatorname{free}(p)$.
+\begin{axiom}[Replacement]
+Let $B\notin\operatorname{free}(p)$.
 $$
 \forall A\,(
-	\forall x\in A,
-	\exists!y\,(
-		p
-	)
+	\forall x\in A,\,
+	\exists!y\,(p)
 	\Rightarrow
-	\exists B, \forall y\,(
+	\exists B,\,
+	\forall y\,(
 		y\in B
 		\Leftrightarrow
-		\exists x\in A\,(
-			p
-		)
+		\exists x\in A\,(p)
 	)
 )
 $$
 \end{axiom}
 
-\begin{definition}
+\begin{definition}[Set Builder]
+Let $X\notin\operatorname{free}(p)$.
+$$
+	X=\{a\in A\mid p\}
+	\Leftrightarrow
+	\forall x\,(
+		x\in X
+		\Leftrightarrow
+		(
+			x\in A
+			\land
+			p
+		)
+	)
+$$
+\end{definition}
+
+\begin{definition}[Cartesian Product]
 $$
 	A\times B
 	=
@@ -259,7 +456,7 @@ $$
 $$
 \end{definition}
 
-\begin{definition}
+\begin{definition}[Set of Functions]
 $$
 	Y^{X}
 	=
@@ -271,6 +468,95 @@ $$
 			(x,y)\in f
 		)
 	\}
+$$
+\end{definition}
+
+\begin{definition}[Function]
+\begin{align*}
+	f:X\to Y
+	&\Leftrightarrow
+	f\in Y^{X}
+	\\
+	f(x)=y
+	&\Leftrightarrow
+	(x,y)\in f
+\end{align*}
+\end{definition}
+
+\begin{definition}[Indexed Product]
+$$
+	\prod B
+	=
+	\mleft\{
+		c:B\to\bigcup B
+		\mid
+		\forall P\in B\,(
+			c(P)\in P
+		)
+	\mright\}
+$$
+\end{definition}
+
+\begin{axiom}[Choice]
+$$
+	\forall O\,\mleft(
+		\forall o\in O\,(
+			o\neq\varnothing
+		)
+		\Rightarrow
+		\prod O\neq\varnothing
+	\mright)
+$$
+\end{axiom}
+
+\begin{definition}[Set Exclusion]
+$$
+	A\setminus B
+	=
+	\{
+		x\in A
+		\mid
+		x\notin B
+	\}
+$$
+\end{definition}
+
+\begin{definition}[Order of Natural Numbers]
+Let $a,b\in\N$.
+\begin{align*}
+	a<b
+	&\Leftrightarrow
+	a\in b
+	\\
+	a\leq b
+	&\Leftrightarrow
+	(
+		a<b
+		\lor
+		a=b
+	)
+\end{align*}
+\end{definition}
+
+\begin{notation}[Numeral]
+Let $m\in\{0,1,2,3,4,5,6,7,8,9\}$.
+$$
+	m
+	\equiv
+	\{n\in\N\mid n<m\}
+$$
+\end{notation}
+
+\begin{definition}[Tuple]
+Let $n\in\N\setminus\varnothing$.
+$$
+	(x_{1},\dots,x_{n})
+	=
+	\begin{cases}
+	x_{1}, & \text{if}\ n=1 \\
+	(x_{1},x_{2}), & \text{elif}\ n=2 \\
+	((x_{1},\dots,x_{n-1}),x_{n}) & \text{otherwise}
+	\end{cases}
 $$
 \end{definition}
 
