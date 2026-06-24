@@ -8,9 +8,9 @@
 
 \maketitle
 
-% Let us define standard mathematics from scratch.
+% Let us define standard mathematics from scratch
 % All shall derive from membership $\in$ and object $\varnothing$.
-% "Notation" tells you how you should re-write a thing in your mind when you squint your eyes.
+% "Notation" says how to re-write a thing in your mind when you squint.
 
 \begin{metadefinition}[Formula]
 	If $a,b$ are variables,
@@ -411,17 +411,17 @@ $$
 \begin{axiom}[Replacement]
 Let $B\notin\operatorname{free}(p)$.
 $$
-\forall A\,(
-	\forall x\in A,\,
-	\exists!y\,(p)
-	\Rightarrow
-	\exists B,\,
-	\forall y\,(
-		y\in B
-		\Leftrightarrow
-		\exists x\in A\,(p)
+	\forall A\,(
+		\forall x\in A,\,
+		\exists!y\,(p)
+		\Rightarrow
+		\exists B,\,
+		\forall y\,(
+			y\in B
+			\Leftrightarrow
+			\exists x\in A\,(p)
+		)
 	)
-)
 $$
 \end{axiom}
 
