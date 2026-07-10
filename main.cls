@@ -15,7 +15,7 @@
 
 \geometry{
 	a4paper,
-	margin=1.5in
+	margin=1in
 }
 \let\footnote\sidenote
 \setmainfont{TeX Gyre Pagella}
