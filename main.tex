@@ -6,12 +6,6 @@
 
 \begin{document}
 
-\maketitle
-
-% Let us define standard mathematics from scratch
-% All shall derive from membership $\in$ and object $\varnothing$.
-% "Notation" says how to re-write a thing in your mind when you squint.
-
 \begin{metadefinition}[Formula]
 	If $a,b$ are variables,
 	then $a\in b$ is a formula.
@@ -21,7 +15,7 @@
 	then $p\land q$ is a formula.
 	If $x$ is a variable,
 	and $p$ is a formula,
-	then $\exists x\,(p)$ is a formula.
+	then $\exists x(p)$ is a formula.
 \end{metadefinition}
 
 \begin{metadefinition}
@@ -58,49 +52,49 @@ $$
 
 \begin{notation}[Exclusive Disjunction]
 $$
-	p\oplus q
+	p\veebar q
 	\equiv
 	\neg(p\Leftrightarrow q)
 $$
 \end{notation}
 
-\begin{notation}[Bounded Existential Quantification]
+\begin{notation}[Negated Existential Quantification]
 $$
-	\exists x\in A\,(p)
+	\nexists
 	\equiv
-	\exists x\,(x\in A\land p)
+	\neg\exists
 $$
 \end{notation}
 
-\begin{notation}[Typed Existential Quantification]
+\begin{notation}[Bounded Existential Quantification]
 $$
-	\exists_{p}x\,(q)
+	\exists x\in A:(p)
 	\equiv
-	\exists x\,(p(x)\land q)
+	\exists x:(x\in A\land p)
 $$
 \end{notation}
 
 \begin{notation}[Universal Quantification]
 $$
-	\forall x\,(p)
+	\forall x:(p)
 	\equiv
-	\neg\exists x\,(\neg p)
+	\nexists x:(\neg p)
+$$
+\end{notation}
+
+\begin{notation}[Negated Universal Quantification]
+$$
+	\nforall
+	\equiv
+	\neg\forall
 $$
 \end{notation}
 
 \begin{notation}[Bounded Universal Quantification]
 $$
-	\forall x\in A\,(p)
+	\forall x\in A:(p)
 	\equiv
-	\forall x\,(x\in A\Rightarrow p)
-$$
-\end{notation}
-
-\begin{notation}[Typed Universal Quantification]
-$$
-	\forall_{p}x\,(q)
-	\equiv
-	\forall x\,(p(x)\Rightarrow q)
+	\forall x:(x\in A\Rightarrow p)
 $$
 \end{notation}
 
@@ -108,13 +102,13 @@ $$
 $$
 	X=Y
 	\equiv
-	\forall a\,(
+	\forall a:(
 		a\in X
 		\Leftrightarrow
 		a\in Y
 	)
 	\land
-	\forall B\,(
+	\forall B:(
 		X\in B
 		\Leftrightarrow
 		Y\in B
@@ -122,14 +116,24 @@ $$
 $$
 \end{notation}
 
+\begin{notation}[Negated Equality]
+$$
+	a\neq b
+	\equiv
+	\neg(a=b)
+$$
+\end{notation}
+
 \begin{notation}[Unique Quantification]
 $$
-	\exists!x\,(p(x))
+	\exists!x:(
+		p(x)
+	)
 	\equiv
-	\exists x\,(
+	\exists x:(
 		p(x)
 		\land
-		\forall y\,(
+		\forall y:(
 			p(y)
 			\Rightarrow
 			y=x
@@ -140,8 +144,9 @@ $$
 
 \begin{axiom}[Empty Set]
 $$
-	\exists n\,(
-		\nexists x\,(x\in n)
+	\exists n,
+	\nexists x:(
+		x\in n
 	)
 $$
 \end{axiom}
@@ -150,15 +155,17 @@ $$
 $$
 	n=\varnothing
 	\Leftrightarrow
-	\nexists x\,(x\in n)
+	\nexists x:(
+		x\in n
+	)
 $$
 \end{definition}
 
 \begin{axiom}[Extensionality]
 $$
-	\forall A,\,
-	\forall B\,(
-		\forall x\,(
+	\forall A,
+	\forall B:(
+		\forall x:(
 			x\in A
 			\Leftrightarrow
 			x\in B
@@ -171,10 +178,10 @@ $$
 
 \begin{axiom}[Pairing]
 $$
-	\forall a,\,
-	\forall b,\,
-	\exists C,\,
-	\forall c\,(
+	\forall a,
+	\forall b,
+	\exists C,
+	\forall c:(
 		c\in C
 		\Leftrightarrow
 		(
@@ -190,7 +197,7 @@ $$
 $$
 	C=\{a,b\}
 	\Leftrightarrow
-	\forall c\,(
+	\forall c:(
 		c\in C
 		\Leftrightarrow
 		(
@@ -205,19 +212,19 @@ $$
 \begin{notation}[Singleton]
 $$
 	\{a\}
-	=
+	\equiv
 	\{a,a\}
 $$
 \end{notation}
 
 \begin{axiom}[Union]
 $$
-	\forall B,\,
-	\exists U,\,
-	\forall c\,(
+	\forall B,
+	\exists U,
+	\forall c:(
 		c\in U
 		\Leftrightarrow
-		\exists P\in B\,(
+		\exists P\in B:(
 			c\in P
 		)
 	)
@@ -228,10 +235,10 @@ $$
 $$
 	U=\bigcup B
 	\Leftrightarrow
-	\forall c\,(
+	\forall c:(
 		c\in U
 		\Leftrightarrow
-		\exists P\in B\,(
+		\exists P\in B:(
 			c\in P
 		)
 	)
@@ -252,10 +259,10 @@ $$
 	\Leftrightarrow
 	B\neq\varnothing
 	\land
-	\forall c\,(
+	\forall c:(
 		c\in I
 		\Leftrightarrow
-		\forall P\in B\,(
+		\forall P\in B:(
 			c\in P
 		)
 	)
@@ -272,12 +279,12 @@ $$
 
 \begin{axiom}[Power Set]
 $$
-	\forall X,\,
-	\exists P,\,
-	\forall S\,(
+	\forall X,
+	\exists P,
+	\forall S:(
 		S\in P
 		\Leftrightarrow
-		\forall s\in S\,(
+		\forall s\in S:(
 			s\in X
 		)
 	)
@@ -286,12 +293,14 @@ $$
 
 \begin{definition}[Power Set]
 $$
-	P=\mathcal P(X)
+	P=\mathcal{P}(X)
 	\Leftrightarrow
-	\forall S\,(
+	\forall S:(
 		S\in P
 		\Leftrightarrow
-		\forall s\in S\,(s\in X)
+		\forall s\in S:(
+			s\in X
+		)
 	)
 $$
 \end{definition}
@@ -306,7 +315,7 @@ $$
 
 \begin{definition}[Successor]
 $$
-	\operatorname{succ}(x)
+	\operatorname{successor}(x)
 	=
 	x\cup\{x\}
 $$
@@ -314,56 +323,23 @@ $$
 
 \begin{definition}[Inductive Set]
 $$
-	\operatorname{Ind}(I)
+	\operatorname{Inductive}(I)
 	\Leftrightarrow
 	\varnothing\in I
 	\land
-	\forall i\in I\,(
-		\operatorname{succ}(i)\in I
+	\forall i\in I:(
+		\operatorname{successor}(i)\in I
 	)
 $$
 \end{definition}
 
 \begin{axiom}[Infinity]
 $$
-	\exists I\,(
-		\operatorname{Ind}(I)
+	\exists I:(
+		\operatorname{Inductive}(I)
 	)
 $$
 \end{axiom}
-
-% \begin{definition}[Set of Natural Numbers]
-% $$
-% 	N=\N
-% 	\Leftrightarrow
-% 	\exists I\,\mleft(
-% 		\operatorname{Ind}(I)
-% 		\land
-% 		N
-% 		=
-% 		\bigcap
-% 		\{
-% 			X\subseteq I
-% 			\mid
-% 			\operatorname{Ind}(X)
-% 		\}
-% 	\mright)
-% $$
-% \end{definition}
-
-\begin{definition}[Set of Natural Numbers]
-$$
-	N=\N
-	\Leftrightarrow
-	\forall n\,(
-		n\in N
-		\Leftrightarrow
-		\forall_{\operatorname{Ind}}I\,(
-			n\in I
-		)
-	)
-$$
-\end{definition}
 
 \begin{definition}[Pair]
 $$
@@ -375,11 +351,14 @@ $$
 
 \begin{axiom}[Foundation]
 $$
-	\forall X\neq\varnothing,\,
-	\exists x\in X\,(
-		x\cap X
-		=
-		\varnothing
+	\forall X:(
+		X\neq\varnothing
+		\Rightarrow
+		\exists x\in X:(
+			x\cap X
+			=
+			\varnothing
+		)
 	)
 $$
 \end{axiom}
@@ -400,7 +379,9 @@ $$
 	\cup
 	\operatorname{free}(q)
 	\\
-	\operatorname{free}(\exists x\,(p))
+	\operatorname{free}(
+		\exists x:(p)
+	)
 	&=
 	\operatorname{free}(p)
 	\setminus
@@ -411,15 +392,17 @@ $$
 \begin{axiom}[Replacement]
 Let $B\notin\operatorname{free}(p)$.
 $$
-	\forall A\,(
+	\forall A:(
 		\forall x\in A,\,
-		\exists!y\,(p)
+		\exists!y:(
+			p
+		)
 		\Rightarrow
-		\exists B,\,
-		\forall y\,(
+		\exists B,
+		\forall y:(
 			y\in B
 			\Leftrightarrow
-			\exists x\in A\,(p)
+			\exists x\in A:(p)
 		)
 	)
 $$
@@ -430,7 +413,7 @@ Let $X\notin\operatorname{free}(p)$.
 $$
 	X=\{a\in A\mid p\}
 	\Leftrightarrow
-	\forall x\,(
+	\forall x:(
 		x\in X
 		\Leftrightarrow
 		(
@@ -464,7 +447,7 @@ $$
 		f\subseteq X\times Y
 		\mid
 		\forall x\in X,
-		\exists!y\in Y\,(
+		\exists!y\in Y:(
 			(x,y)\in f
 		)
 	\}
@@ -489,8 +472,8 @@ $$
 	=
 	\mleft\{
 		c:B\to\bigcup B
-		\mid
-		\forall P\in B\,(
+		\setmiddle
+		\forall P\in B:(
 			c(P)\in P
 		)
 	\mright\}
@@ -499,8 +482,8 @@ $$
 
 \begin{axiom}[Choice]
 $$
-	\forall O\,\mleft(
-		\forall o\in O\,(
+	\forall O:\mleft(
+		\forall o\in O:(
 			o\neq\varnothing
 		)
 		\Rightarrow
@@ -509,7 +492,7 @@ $$
 $$
 \end{axiom}
 
-\begin{definition}[Set Exclusion]
+\begin{definition}[Exclusion]
 $$
 	A\setminus B
 	=
@@ -521,40 +504,93 @@ $$
 $$
 \end{definition}
 
-\begin{definition}[Order of Natural Numbers]
-Let $a,b\in\N$.
-\begin{align*}
-	a<b
-	&\Leftrightarrow
-	a\in b
-	\\
-	a\leq b
-	&\Leftrightarrow
-	(
-		a<b
-		\lor
-		a=b
+\begin{definition}[Set of Natural Numbers]
+$$
+	N=\N
+	\Leftrightarrow
+	\forall n:(
+		n\in N
+		\Leftrightarrow
+		\forall I:(
+			\operatorname{Inductive}(I)
+			\Rightarrow
+			n\in I
+		)
 	)
-\end{align*}
+$$
 \end{definition}
 
-\begin{notation}[Numeral]
-Let $m\in\{0,1,2,3,4,5,6,7,8,9\}$.
+\begin{definition}[Strict Order of Natural Numbers]
+Let $a,b\in\N$.
 $$
-	m
+	a<b
+	\Leftrightarrow
+	a\in b
+$$
+\end{definition}
+
+\begin{notation}[Non-Strict Order]
+$$
+	a\leq b
 	\equiv
-	\{n\in\N\mid n<m\}
+	a<b
+	\lor
+	a=b
 $$
 \end{notation}
 
+\begin{notation}[Numeral]
+\begin{align*}
+	0
+	&\equiv
+	\varnothing
+	\\
+	1
+	&\equiv
+	\{0\}
+	\\
+	2
+	&\equiv
+	\{0,1\}
+	\\
+	3
+	&\equiv
+	\{0,1,2\}
+	\\
+	4
+	&\equiv
+	\{0,1,2,3\}
+	\\
+	5
+	&\equiv
+	\{0,1,2,3,4\}
+	\\
+	6
+	&\equiv
+	\{0,1,2,3,4,5\}
+	\\
+	7
+	&\equiv
+	\{0,1,2,3,4,5,6\}
+	\\
+	8
+	&\equiv
+	\{0,1,2,3,4,5,6,7\}
+	\\
+	9
+	&\equiv
+	\{0,1,2,3,4,5,6,7,8\}
+\end{align*}
+\end{notation}
+
 \begin{definition}[Tuple]
-Let $n\in\N\setminus\varnothing$.
+Let $n\in\N\setminus\{0\}$.
 $$
 	(x_{1},\dots,x_{n})
 	=
 	\begin{cases}
 	x_{1}, & \text{if}\ n=1 \\
-	(x_{1},x_{2}), & \text{elif}\ n=2 \\
+	(x_{1},x_{2}), & \text{if}\ n=2 \\
 	((x_{1},\dots,x_{n-1}),x_{n}) & \text{otherwise}
 	\end{cases}
 $$

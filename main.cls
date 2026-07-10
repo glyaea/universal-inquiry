@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{cancel}
 \usepackage{centernot}
 \usepackage{fontspec}
 \usepackage{geometry}
@@ -18,6 +19,7 @@
 }
 \let\footnote\sidenote
 \setmainfont{TeX Gyre Pagella}
+
 \theoremstyle{definition}
 \newtheorem{axiom}{Axiom}
 \newtheorem{definition}{Definition}
@@ -28,4 +30,26 @@
 \newtheorem{remark}{Remark}
 \newtheorem{example}{Example}
 
+% \, \: \;
+% \mkern6mu \mkern7mu \mkern8mu
+% \enspace \quad \qquad
+
+\let\oldequiv\equiv
+\let\oldmid\mid
+\let\oldLeftrightarrow\Leftrightarrow
+\let\oldRightarrow\Rightarrow
+
+\newcommand{\nforall}{\cancel\forall}
 \newcommand{\N}{\mathbb{N}}
+
+\renewcommand{\mid}{\enspace|\enspace}
+\newcommand{\setmiddle}{\enspace\middle|\enspace}
+
+\renewcommand{\land}{\mkern8mu\textsc{and}\mkern8mu}
+\renewcommand{\lor}{\mkern8mu\textsc{or}\mkern8mu}
+\renewcommand{\veebar}{\mkern8mu\textsc{xor}\mkern8mu}
+
+\renewcommand{\Leftrightarrow}{\:\oldLeftrightarrow\:}
+\renewcommand{\Rightarrow}{\:\oldRightarrow\:}
+
+\renewcommand{\equiv}{\;\oldequiv\;}
